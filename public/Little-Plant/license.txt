@@ -1,0 +1,6 @@
+Title: Little Plant
+Author: Pierrick (https://superspl.at/user?id=pkefr)
+Source: https://superspl.at/scene/c5af35a1
+License: CC Attribution (Creative Commons Attribution)
+License URL: http://creativecommons.org/licenses/by/4.0/
+Requirements: Author must be credited. Commercial use is allowed.
