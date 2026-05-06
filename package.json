@@ -1,6 +1,5 @@
 {
   "name": "three-gsmesh",
-  "private": true,
   "version": "0.0.1",
   "type": "module",
   "main": "./dist/three-gsmesh.js",
