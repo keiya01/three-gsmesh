@@ -18,8 +18,8 @@ import { GSMesh, PlyLoader, SpzLoader, type SplatData } from 'three-gsmesh';
 import { PaneUI, type PaneUIState } from './pane';
 
 const PRESETS = {
-  'Cherry Blossoms': '/CHERRY BLOSSOMS/scene.spz',
   'Little Plant': '/Little-Plant/scene.spz',
+  'Cherry Blossoms': '/CHERRY BLOSSOMS/scene.spz',
   Flowers: '/Flowers/scene.spz',
 } as const;
 
@@ -32,19 +32,19 @@ const PRESET_CREDITS: Record<PresetName, {
   license: string;
   licenseUrl: string;
 }> = {
-  'Cherry Blossoms': {
-    title: 'Cherry Blossoms',
-    author: 'Todd Smith',
-    sourceUrl: 'https://superspl.at/scene/4fe67b3d',
-    license: 'CC BY-NC-SA 4.0',
-    licenseUrl: 'http://creativecommons.org/licenses/by-nc-sa/4.0/',
-  },
   'Little Plant': {
     title: 'Little Plant',
     author: 'Pierrick',
     sourceUrl: 'https://superspl.at/scene/c5af35a1',
     license: 'CC BY 4.0',
     licenseUrl: 'http://creativecommons.org/licenses/by/4.0/',
+  },
+  'Cherry Blossoms': {
+    title: 'Cherry Blossoms',
+    author: 'Todd Smith',
+    sourceUrl: 'https://superspl.at/scene/4fe67b3d',
+    license: 'CC BY-NC-SA 4.0',
+    licenseUrl: 'http://creativecommons.org/licenses/by-nc-sa/4.0/',
   },
   Flowers: {
     title: 'Flowers',
@@ -146,8 +146,8 @@ const run = async () => {
     0.1,
     1000,
   );
-  camera.position.z = 6;
-  camera.position.y = 2.5;
+  camera.position.z = 1;
+  camera.position.y = 0.5;
 
   const renderInfo = {
     requested: true,
@@ -307,7 +307,7 @@ const run = async () => {
     dataOptions: Object.keys(PRESETS),
     accept: '.ply,.spz',
     initialState: {
-      data: 'Cherry Blossoms',
+      data: 'Little Plant',
       renderMode: 'billboard',
       showEllipsoid: false,
       includeSH: true,

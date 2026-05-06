@@ -1,6 +1,6 @@
 # GSMesh for TSL
 
-![operation](assets/operation.mp4)
+![plant](assets/plant.png)
 
 This library provides `GSMesh`, which renders 3D Gaussian Splatting data with Three.js Shading Language (TSL).
 
