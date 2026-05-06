@@ -19,6 +19,7 @@
     "preview": "vite preview --outDir dist-example"
   },
   "files": [
+    "assets",
     "dist"
   ],
   "peerDependencies": {
