@@ -12,6 +12,12 @@ This is basically a project for learning purpose, but you can use this as a libr
 
 Note that this library only works on `three/webgpu`.
 
+## Usage
+
+```sh
+pnpm add three-gsmesh
+```
+
 ```ts
 import { GSMesh, SpzLoader } from "three-gsmesh";
 
