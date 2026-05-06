@@ -1,6 +1,4 @@
-import type ComputeNode from "three/src/nodes/gpgpu/ComputeNode.js";
-import type StorageBufferNode from "three/src/nodes/accessors/StorageBufferNode.js";
-import { BufferAttribute, Node, type WebGPURenderer } from "three/webgpu";
+import { BufferAttribute, ComputeNode, Node, StorageBufferNode, type WebGPURenderer } from "three/webgpu";
 import { Fn, instanceIndex, storage } from "three/tsl";
 import { createDepthKeyCompute } from "./computes/depthKey";
 import { createPrefixSumLevels, type PrefixLevel } from "./computes/prefixSum";

@@ -3,20 +3,21 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "main": "./dist/three-gsmesh.umd.cjs",
+  "main": "./dist/three-gsmesh.js",
   "module": "./dist/three-gsmesh.js",
   "types": "./dist/three-gsmesh.d.ts",
   "exports": {
     ".": {
       "import": "./dist/three-gsmesh.js",
-      "require": "./dist/three-gsmesh.umd.cjs",
       "types": "./dist/three-gsmesh.d.ts"
     }
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "build": "tsc && pnpm build:dist && pnpm build:example",
+    "build:dist": "vite build -c ./vite.build.config.ts",
+    "build:example": "vite build --outDir dist-example",
+    "preview": "vite preview --outDir dist-example"
   },
   "files": [
     "dist"

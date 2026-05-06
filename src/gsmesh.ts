@@ -1,5 +1,5 @@
 import { PlyReader } from "@sparkjsdev/spark";
-import { BufferAttribute, BufferGeometry, InstancedBufferGeometry, Matrix4, Vector2 } from "three";
+import { BufferAttribute, BufferGeometry, InstancedBufferGeometry, Matrix4, Vector2 } from "three/webgpu";
 import { Mesh, MeshBasicNodeMaterial, Node, Object3D, Points, PointsNodeMaterial, WebGPURenderer } from "three/webgpu";
 import {
   attribute,

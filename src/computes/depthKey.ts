@@ -1,5 +1,3 @@
-import type ComputeNode from "three/src/nodes/gpgpu/ComputeNode.js";
-import type StorageBufferNode from "three/src/nodes/accessors/StorageBufferNode.js";
 import {
   float,
   Fn,
@@ -10,7 +8,7 @@ import {
   uint,
   vec4,
 } from "three/tsl";
-import type { Node } from "three/webgpu";
+import type { ComputeNode, Node, StorageBufferNode } from "three/webgpu";
 
 const DEPTH_KEY_SUBDIVISIONS_PER_UNIT = 1024;
 

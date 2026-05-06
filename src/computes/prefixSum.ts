@@ -1,6 +1,4 @@
-import { BufferAttribute } from "three";
-import type ComputeNode from "three/src/nodes/gpgpu/ComputeNode.js";
-import type StorageBufferNode from "three/src/nodes/accessors/StorageBufferNode.js";
+import { BufferAttribute } from "three/webgpu";
 import {
   Fn,
   If,
@@ -12,6 +10,7 @@ import {
   workgroupBarrier,
   workgroupId,
 } from "three/tsl";
+import type { ComputeNode, StorageBufferNode } from "three/webgpu";
 
 export type PrefixLevel = {
   reduce: ComputeNode;

@@ -1,6 +1,5 @@
 // Ref: https://github.com/sparkjsdev/spark/blob/3cf9fa15adb7ac7c47a1e962740db97b9e8a9fdf/src/PackedSplats.ts
 
-import type StorageBufferNode from "three/src/nodes/accessors/StorageBufferNode.js";
 import {
   float,
   int,
@@ -9,7 +8,7 @@ import {
   uvec4,
   vec3,
 } from "three/tsl";
-import type { Node } from "three/webgpu";
+import type { Node, StorageBufferNode } from "three/webgpu";
 
 type PackedSHNodeOptions = {
   sh1?: StorageBufferNode<"uint">;

@@ -1,4 +1,4 @@
-import { Matrix3, Matrix4, Quaternion, Vector3 } from "three";
+import { Matrix3, Matrix4, Quaternion, Vector3 } from "three/webgpu";
 
 type Covariance = [
   c00: number,

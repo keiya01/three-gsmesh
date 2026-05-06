@@ -1,5 +1,3 @@
-import type ComputeNode from "three/src/nodes/gpgpu/ComputeNode.js";
-import type StorageBufferNode from "three/src/nodes/accessors/StorageBufferNode.js";
 import {
   dot,
   float,
@@ -17,7 +15,7 @@ import {
   vec3,
   vec4,
 } from "three/tsl";
-import type { Matrix4, Node, UniformNode, Vector2 } from "three/webgpu";
+import type { ComputeNode, Matrix4, Node, StorageBufferNode, UniformNode, Vector2 } from "three/webgpu";
 
 type BasisComputeOptions = {
   center: StorageBufferNode<"vec4">;

@@ -1,5 +1,3 @@
-import type ComputeNode from "three/src/nodes/gpgpu/ComputeNode.js";
-import type StorageBufferNode from "three/src/nodes/accessors/StorageBufferNode.js";
 import {
   Fn,
   If,
@@ -9,7 +7,7 @@ import {
   workgroupBarrier,
   workgroupId,
 } from "three/tsl";
-import type { Node } from "three/webgpu";
+import type { ComputeNode, Node, StorageBufferNode } from "three/webgpu";
 
 export const RADIX_BITS_PER_PASS = 2;
 export const RADIX_BUCKETS = 1 << RADIX_BITS_PER_PASS;

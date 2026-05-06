@@ -1,5 +1,5 @@
 import { PlyReader, utils } from "@sparkjsdev/spark";
-import { Loader, LoadingManager } from "three";
+import { Loader, LoadingManager } from "three/webgpu";
 import { computeCovariance } from "../covariance";
 import type { SplatData, SplatLoaderOptions } from "./constants";
 
