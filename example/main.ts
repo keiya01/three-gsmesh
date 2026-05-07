@@ -110,7 +110,7 @@ const resolveSource = (state: PaneUIState) => {
     key: `preset:${state.data}`,
     label: state.data,
     file: null,
-    url: PRESETS[state.data],
+    url: `${import.meta.env.BASE_URL}${PRESETS[state.data]}`,
   };
 };
 
