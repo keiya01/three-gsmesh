@@ -16,8 +16,8 @@
     "dev": "vite",
     "build": "tsc && pnpm build:dist && pnpm build:example",
     "build:dist": "vite build -c ./vite.build.config.ts",
-    "build:example": "vite build --outDir dist-example",
-    "preview": "vite preview --outDir dist-example"
+    "build:example": "vite build --outDir docs",
+    "preview": "vite preview --outDir docs"
   },
   "files": [
     "dist"

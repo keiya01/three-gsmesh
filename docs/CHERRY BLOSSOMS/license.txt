@@ -1,0 +1,6 @@
+Title: CHERRY BLOSSOMS
+Author: Todd Smith (https://superspl.at/user?id=lookabout)
+Source: https://superspl.at/scene/4fe67b3d
+License: CC Attribution-NonCommercial-ShareAlike
+License URL: http://creativecommons.org/licenses/by-nc-sa/4.0/
+Requirements: Author must be credited. No commercial use. Modified versions must have the same license.
