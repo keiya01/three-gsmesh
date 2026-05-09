@@ -105,6 +105,10 @@ export class SplatDepthSorter {
   createStorages(splatCount: number, workgroupSize: number) {
         const sortedIndexAttribute = new BufferAttribute(new Uint32Array(splatCount), 1);
         const depthKeyAttribute = new BufferAttribute(new Uint32Array(splatCount), 1);
+
+        for (let i = 0; i < splatCount; i++) {
+          sortedIndexAttribute.setX(i, i);
+        }
     
         const sortedIndex = storage(
           sortedIndexAttribute,
@@ -151,7 +155,7 @@ export class SplatDepthSorter {
         }
   }
 
-  compute(renderer: WebGPURenderer) {
+  private getComputeNodes() {
     const computeNodes: ComputeNode[] = [this.keyCompute];
 
     for (let pass = 0; pass < this.radixPasses.length; pass += 2) {
@@ -175,7 +179,15 @@ export class SplatDepthSorter {
       computeNodes.push(this.radixPasses[pass + 1]);
     }
 
-    renderer.compute(computeNodes);
+    return computeNodes;
+  }
+
+  compute(renderer: WebGPURenderer) {
+    renderer.compute(this.getComputeNodes());
+  }
+
+  async computeAsync(renderer: WebGPURenderer) {
+    await renderer.computeAsync(this.getComputeNodes());
   }
 }
 
