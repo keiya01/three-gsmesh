@@ -72,6 +72,11 @@ export type GSMeshOptions = {
    */
   depthSortBits?: number;
   /**
+   * Minimum rendered frames between depth sort dispatches while the camera is moving.
+   * Use 1 to sort every changed frame.
+   */
+  sortIntervalFrames?: number;
+  /**
    * Center-based frustum clipping margin. Spark uses 1.4 by default; lower values
    * cull more off-screen splats before they rasterize.
    */
@@ -94,6 +99,9 @@ export class GSMesh extends Object3D {
   depthSorter: SplatDepthSorter | null = null;
 
   private lastSortModelViewMatrix = new Matrix4();
+  private pendingSortModelViewMatrix = new Matrix4();
+  private sortPromise: Promise<void> | null = null;
+  private framesSinceLastSort = Number.MAX_SAFE_INTEGER;
   private needsSort = true;
 
   constructor(data: SplatData, options: GSMeshOptions = {}) {
@@ -109,6 +117,7 @@ export class GSMesh extends Object3D {
       useBasis: options.useBasis ?? true,
       showEllipsoid: options.showEllipsoid ?? false,
       depthSortBits: options.depthSortBits ?? DEFAULT_RADIX_BIT_COUNT,
+      sortIntervalFrames: Math.max(1, Math.ceil(options.sortIntervalFrames ?? 3)),
       clipXY: options.clipXY ?? 1,
       shMax: {
         sh1: options.shMax?.sh1 ?? 1,
@@ -310,6 +319,11 @@ export class GSMesh extends Object3D {
     const mesh = new Mesh(geometry, material);
 
     mesh.onBeforeRender = (renderer, _scene, camera) => {
+      this.framesSinceLastSort = Math.min(
+        this.framesSinceLastSort + 1,
+        Number.MAX_SAFE_INTEGER,
+      );
+
       basisModelViewMatrix.value.multiplyMatrices(camera.matrixWorldInverse, mesh.matrixWorld);
       basisProjectionMatrix.value.copy(camera.projectionMatrix);
       renderer.getDrawingBufferSize(basisScreenSize.value);
@@ -324,10 +338,28 @@ export class GSMesh extends Object3D {
         return;
       }
 
-      this.depthSorter!.compute(webgpuRenderer);
+      if (this.sortPromise !== null) {
+        return;
+      }
 
-      this.lastSortModelViewMatrix.copy(basisModelViewMatrix.value);
-      this.needsSort = false;
+      if (!this.needsSort && this.framesSinceLastSort < this.options.sortIntervalFrames) {
+        return;
+      }
+
+      this.pendingSortModelViewMatrix.copy(basisModelViewMatrix.value);
+      this.framesSinceLastSort = 0;
+      this.sortPromise = this.depthSorter!.computeAsync(webgpuRenderer)
+        .then(() => {
+          this.lastSortModelViewMatrix.copy(this.pendingSortModelViewMatrix);
+          this.needsSort = false;
+        })
+        .catch((error) => {
+          console.warn("GSMesh: depth sort compute failed.", error);
+          this.needsSort = true;
+        })
+        .finally(() => {
+          this.sortPromise = null;
+        });
     };
 
     return mesh;
