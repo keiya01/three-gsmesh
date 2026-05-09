@@ -1,6 +1,5 @@
 {
   "name": "three-gsmesh",
-  "private": true,
   "version": "0.0.3",
   "type": "module",
   "main": "./dist/three-gsmesh.js",
@@ -20,6 +19,7 @@
     "preview": "vite preview --outDir dist-example"
   },
   "files": [
+    "assets",
     "dist"
   ],
   "peerDependencies": {
